@@ -15,7 +15,7 @@ import tensorflow_hub as hub
 hub_model = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
 
 # Create the application instance with the Telegram bot token
-app = ApplicationBuilder().token("7825824681:AAEVnQiWFpZC3dZEjaCTBF0RJqEkZ-poEfU").build()
+app = ApplicationBuilder().token("past your token").build()
 
 def tf2PIL(stylized_image):
     img_array = tf.squeeze(stylized_image).numpy()  # Remove batch dimension
