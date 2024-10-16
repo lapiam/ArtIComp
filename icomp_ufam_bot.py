@@ -15,9 +15,8 @@ import tensorflow_hub as hub
 hub_model = hub.load('https://tfhub.dev/google/magenta/arbitrary-image-stylization-v1-256/2')
 
 # Create the application instance with the Telegram bot token
-# app = ApplicationBuilder().token("7825824681:AAEVnQiWFpZC3dZEjaCTBF0RJqEkZ-poEfU").build()
 app = ApplicationBuilder() \
-    .token("your telegram token") \
+    .token("your telegram token here") \
     .connect_timeout(30) \
     .read_timeout(30) \
     .build()
@@ -42,11 +41,11 @@ def load_img(path_to_img):
     img = img[tf.newaxis, :]
     return img
 
-andinsky_style = load_img('wassily_andinsky.jpg')
-van_gogh_style = load_img('van_gogh_2.jpg')
-frida_style = load_img('frida_kahlo_2.jpg')
-benito_style = load_img('benito.jpg')
-hokusai_style = load_img('hokusai.jpg')
+andinsky_style = load_img('styles/wassily_andinsky.jpg')
+van_gogh_style = load_img('styles/van_gogh_2.jpg')
+frida_style = load_img('styles/frida_kahlo_2.jpg')
+benito_style = load_img('styles/benito.jpg')
+hokusai_style = load_img('styles/hokusai.jpg')
 
 def preprocess_image(photo_bytes):
     """
@@ -126,19 +125,19 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text=message_2)
 
 async def styles(update: Update, context: ContextTypes.DEFAULT_TYPE):  
-    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("van_gogh_2.jpg", 'rb'))
+    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("styles/van_gogh_2.jpg", 'rb'))
     await context.bot.send_message(chat_id=update.effective_chat.id, text='Estilo Van Gogh! /van_gogh')
     
-    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("frida_kahlo_2.jpg", 'rb'))
+    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("styles/frida_kahlo_2.jpg", 'rb'))
     await context.bot.send_message(chat_id=update.effective_chat.id, text='Estilo Frida Kahlo! /frida')
     
-    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("wassily_andinsky.jpg", 'rb'))
+    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("styles/wassily_andinsky.jpg", 'rb'))
     await context.bot.send_message(chat_id=update.effective_chat.id, text='Estilo Wassily Andinsky! /andinsky')
     
-    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("benito.jpg", 'rb'))
+    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("styles/benito.jpg", 'rb'))
     await context.bot.send_message(chat_id=update.effective_chat.id, text='Estilo Benito Quinquel Martín! /benito')
 
-    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("hokusai.jpg", 'rb'))
+    await context.bot.send_photo(chat_id=update.effective_chat.id, photo=open("styles/hokusai.jpg", 'rb'))
     await context.bot.send_message(chat_id=update.effective_chat.id, text='Estilo Katsushika Hokusai! /hokusai')
 
     await context.bot.send_message(chat_id=update.effective_chat.id, text=message_3)
